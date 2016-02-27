@@ -1,6 +1,6 @@
 import ParseCSS from 'css-parse';
 import toCamelCase from 'to-camel-case';
-import utils from './utils.js'
+import utils from './utils.js';
 export default class ReactNativeCss {
 
   constructor() {
@@ -25,12 +25,11 @@ export default class ReactNativeCss {
           process.exit();
         }
         let styleSheet = this.toJSS(data);
-        utils.outputReactFriendlyStyle(styleSheet, output, this.prettyPrint)
+          utils.outputReactFriendlyStyle(styleSheet, output, this.prettyPrint);
       });
     }
 
   }
-
   toJSS(stylesheetString) {
     const changeArr = ['margin', 'padding'];
 

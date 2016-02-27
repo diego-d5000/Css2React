@@ -23,7 +23,7 @@ export default class Utils {
   static outputReactFriendlyStyle(style, outputFile, prettyPrint) {
     var indentation = prettyPrint ? 4 : 0;
     var wstream = fs.createWriteStream(outputFile);
-    wstream.write(`module.exports = require('react-native').StyleSheet.create(${JSON.stringify(style, null, indentation)});`);
+    wstream.write(`module.exports = ${JSON.stringify(style, null, indentation)}`);
     wstream.end();
     return style;
   }

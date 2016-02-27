@@ -157,13 +157,11 @@ var ReactNativeCss = (function () {
                       });
                     }
                   } else {
-
-                    if (!isNaN(declaration.value)) {
+                    if (!isNaN(declaration.value) && property !== 'font-weight') {
                       declaration.value = parseInt(declaration.value);
-                      styles[(0, _toCamelCase2['default'])(property)] = declaration.value;
-                    } else {
-                      styles[(0, _toCamelCase2['default'])(property)] = declaration.value;
                     }
+
+                    styles[(0, _toCamelCase2['default'])(property)] = declaration.value;
                   }
                 };
 
@@ -233,8 +231,6 @@ var ReactNativeCss = (function () {
               }
             }
           }
-
-          return JSONResult;
         }
       } catch (err) {
         _didIteratorError = true;
@@ -250,6 +246,8 @@ var ReactNativeCss = (function () {
           }
         }
       }
+
+      return JSONResult;
     }
   }]);
 
