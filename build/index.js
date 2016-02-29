@@ -45,6 +45,22 @@ var ReactNativeCss = (function () {
 
         var styleSheet = this.toJSS(css.toString());
         return _utilsJs2['default'].outputReactFriendlyStyle(styleSheet, output, prettyPrint);
+      } else if (_utilsJs2['default'].contains(input, /less/)) {
+        (function () {
+          var less = require('less');
+
+          var lessFile = _utilsJs2['default'].readFile(input, function (err, data) {
+            if (err) {
+              console.error(err);
+              process.exit();
+            }
+
+            less.render(data).then(function (lessOutput) {
+              var styleSheet = _this.toJSS(lessOutput.css);
+              _utilsJs2['default'].outputReactFriendlyStyle(styleSheet, output, _this.prettyPrint);
+            }, console.error);
+          });
+        })();
       } else {
         _utilsJs2['default'].readFile(input, function (err, data) {
           if (err) {
@@ -166,9 +182,9 @@ var ReactNativeCss = (function () {
                 };
 
                 for (_iterator3 = rule.declarations[Symbol.iterator](); !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                  var _ret2 = _loop2();
+                  var _ret3 = _loop2();
 
-                  if (_ret2 === 'continue') continue;
+                  if (_ret3 === 'continue') continue;
                 }
               } catch (err) {
                 _didIteratorError3 = true;

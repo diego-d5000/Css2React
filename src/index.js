@@ -18,6 +18,21 @@ export default class ReactNativeCss {
       let styleSheet = this.toJSS(css.toString());
       return utils.outputReactFriendlyStyle(styleSheet, output, prettyPrint);
 
+    } else if(utils.contains(input, /less/)){
+        let less = require('less');
+
+        let lessFile = utils.readFile(input, (err, data) => {
+            if (err) {
+                console.error(err);
+                process.exit();
+            }
+
+            less.render(data).then(lessOutput => {
+                let styleSheet = this.toJSS(lessOutput.css);
+                utils.outputReactFriendlyStyle(styleSheet, output, this.prettyPrint);
+            }, console.error);
+        });
+
     } else {
       utils.readFile(input, (err, data) => {
         if (err) {
@@ -111,6 +126,6 @@ export default class ReactNativeCss {
         }
       }
     }
-    return JSONResult
+      return JSONResult;
   }
 }

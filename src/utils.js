@@ -6,7 +6,7 @@ export default class Utils {
     var flag = false;
     for (var i = 0; i < arr.length; i++) {
       if (value === arr[i]) {
-        return true
+          return true;
       }
     }
     return flag;
